@@ -14,13 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->pushButton_2->setShortcut(Qt::Key_Enter|Qt::Key_Return);
     //connect(ui->pushButton_2,SIGNAL(returnPressed(),this,SLOT(clicked())));
     //connect(ui->m_sendTextEdit, SIGNAL(returnPressed()), ui->pushButton_2, SLOT(on_pushButton_2_clicked()));
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-void MainWindow::on_m_connectServerBtn_clicked(){
+    //////////connet to the server
     mp_clientSocket = new QTcpSocket();
 //    QString ip = ui->m_serverIPLineEdit->text();\
 //    int port = ui->m_serverPortLineEdit_2->text().toInt();
@@ -31,6 +25,23 @@ void MainWindow::on_m_connectServerBtn_clicked(){
         return;
     }
      connect(mp_clientSocket, SIGNAL(readyRead()), this, SLOT(ClientRecvData()));
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+void MainWindow::on_m_connectServerBtn_clicked(){
+//    mp_clientSocket = new QTcpSocket();
+////    QString ip = ui->m_serverIPLineEdit->text();\
+////    int port = ui->m_serverPortLineEdit_2->text().toInt();
+//    mp_clientSocket->connectToHost(serverIP, serverPort.toInt());
+//    if(!mp_clientSocket->waitForConnected(30000))
+//    {
+//        QMessageBox::information(this, "QT网络通信", "连接服务端失败！");
+//        return;
+//    }
+//     connect(mp_clientSocket, SIGNAL(readyRead()), this, SLOT(ClientRecvData()));
 }
 void MainWindow::on_pushButton_2_clicked(){
 
