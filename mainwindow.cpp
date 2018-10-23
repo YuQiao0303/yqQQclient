@@ -58,5 +58,5 @@ void MainWindow::ClientRecvData(){
         return;
     }
     QString showQstr = recvMsg;
-    ui->m_recvTextEdit_2->setText(showQstr);
+    ui->m_recvTextEdit_2->append(showQstr);
 }
