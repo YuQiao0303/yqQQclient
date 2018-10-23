@@ -31,7 +31,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_2_clicked(){
 
     //获取TextEdit控件中的内容
-    QString sendMsg = userName + ":" + ui->m_sendTextEdit->toPlainText();
+    QString sendMsg = userName + "(我):" + ui->m_sendTextEdit->toPlainText();
     char sendMsgChar[1024] = {0};
     strcpy_s(sendMsgChar, sendMsg.toStdString().c_str());
     int sendRe = mp_clientSocket->write(sendMsgChar, strlen(sendMsgChar));
@@ -50,7 +50,7 @@ void MainWindow::on_pushButton_2_clicked(){
 //        cursor.movePosition(QTextCursor::StartOfLine);
 //        ui->m_recvTextEdit_2->setTextCursor(cursor);
 
-        ui->m_recvTextEdit_2->insertHtml(QString("<div style=\"white-space:pre;color:red;\">%1</div><br>").arg(ui->m_sendTextEdit->toPlainText()));
+        ui->m_recvTextEdit_2->insertHtml(QString("<div style=\"white-space:pre;color:red;\">%1</div><br>").arg(sendMsg));
         ui->m_sendTextEdit->setText("");
 
 
