@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>418聊天室</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLabel" name="label_3">
@@ -60,7 +60,7 @@
      </rect>
     </property>
     <property name="readOnly">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">

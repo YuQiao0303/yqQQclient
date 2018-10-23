@@ -8,17 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //
-    //ui->m_serverIPLineEdit->setText("127.0.0.1");
-    //ui->m_serverPortLineEdit_2->setText("5550");
     ////快捷键尝试
     //ui->pushButton_2->setShortcut(Qt::Key_Enter|Qt::Key_Return);
     //connect(ui->pushButton_2,SIGNAL(returnPressed(),this,SLOT(clicked())));
     //connect(ui->m_sendTextEdit, SIGNAL(returnPressed()), ui->pushButton_2, SLOT(on_pushButton_2_clicked()));
     //////////connet to the server
     mp_clientSocket = new QTcpSocket();
-//    QString ip = ui->m_serverIPLineEdit->text();\
-//    int port = ui->m_serverPortLineEdit_2->text().toInt();
     mp_clientSocket->connectToHost(serverIP, serverPort.toInt());
     if(!mp_clientSocket->waitForConnected(30000))
     {
@@ -46,7 +41,20 @@ void MainWindow::on_pushButton_2_clicked(){
          return;
     }
     else
+    {
+
+        //ui->m_recvTextEdit_2->moveCursor(QTextCursor::NextRow,QTextCursor::KeepAnchor);
+
+//        QTextCursor cursor = ui->m_recvTextEdit_2->textCursor();
+//        cursor.movePosition(QTextCursor::Down);
+//        cursor.movePosition(QTextCursor::StartOfLine);
+//        ui->m_recvTextEdit_2->setTextCursor(cursor);
+
+        ui->m_recvTextEdit_2->insertHtml(QString("<div style=\"white-space:pre;color:red;\">%1</div><br>").arg(ui->m_sendTextEdit->toPlainText()));
         ui->m_sendTextEdit->setText("");
+
+
+    }
 }
 void MainWindow::ClientRecvData(){
     //将接收内容存储到字符串中
@@ -57,6 +65,8 @@ void MainWindow::ClientRecvData(){
         QMessageBox::information(this, "QT网络通信", "接收服务端数据失败！");
         return;
     }
-    QString showQstr = recvMsg;
-    ui->m_recvTextEdit_2->append(showQstr);
+    QString showQstr = recvMsg; 
+    //ui->m_recvTextEdit_2->moveCursor(QTextCursor::NextRow,QTextCursor::KeepAnchor);
+    ui->m_recvTextEdit_2->insertHtml(QString("<div style=\"white-space:pre;\">%1</div><br>").arg(showQstr));
+    //ui->m_recvTextEdit_2->append(showQstr);
 }
