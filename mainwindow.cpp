@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+extern QString serverIP;
+extern QString serverPort;
+extern QString userName;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -20,9 +22,9 @@ MainWindow::~MainWindow()
 }
 void MainWindow::on_m_connectServerBtn_clicked(){
     mp_clientSocket = new QTcpSocket();
-    QString ip = ui->m_serverIPLineEdit->text();\
-    int port = ui->m_serverPortLineEdit_2->text().toInt();
-    mp_clientSocket->connectToHost(ip, port);
+//    QString ip = ui->m_serverIPLineEdit->text();\
+//    int port = ui->m_serverPortLineEdit_2->text().toInt();
+    mp_clientSocket->connectToHost(serverIP, serverPort.toInt());
     if(!mp_clientSocket->waitForConnected(30000))
     {
         QMessageBox::information(this, "QT网络通信", "连接服务端失败！");
@@ -33,7 +35,7 @@ void MainWindow::on_m_connectServerBtn_clicked(){
 void MainWindow::on_pushButton_2_clicked(){
 
     //获取TextEdit控件中的内容
-    QString sendMsg = QString("yuqiao:") + ui->m_sendTextEdit->toPlainText();
+    QString sendMsg = userName + ":" + ui->m_sendTextEdit->toPlainText();
     char sendMsgChar[1024] = {0};
     strcpy_s(sendMsgChar, sendMsg.toStdString().c_str());
     int sendRe = mp_clientSocket->write(sendMsgChar, strlen(sendMsgChar));
