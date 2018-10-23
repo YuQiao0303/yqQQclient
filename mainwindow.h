@@ -19,10 +19,8 @@ public:
 private:
     Ui::MainWindow *ui;
 private slots:
-    void on_m_connectServerBtn_clicked();
-
+    //void on_m_connectServerBtn_clicked();
     void on_pushButton_2_clicked();
-
     void ClientRecvData();
 
 private:
