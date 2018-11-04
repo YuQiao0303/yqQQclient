@@ -50,7 +50,7 @@ void MainWindow::on_pushButton_2_clicked(){
 //        cursor.movePosition(QTextCursor::StartOfLine);
 //        ui->m_recvTextEdit_2->setTextCursor(cursor);
 
-        ui->m_recvTextEdit_2->insertHtml(QString("<div style=\"white-space:pre;\"><font color=\"red\">%1（我）：\n%2</font></div><br>").arg(userName).arg(ui->m_sendTextEdit->toPlainText()));
+        ui->m_recvTextEdit_2->insertHtml(QString("<div style=\"white-space:pre;\"><font color=\"green\">%1（我）：\n%2</font></div><br>").arg(userName).arg(ui->m_sendTextEdit->toPlainText()));
         ui->m_sendTextEdit->setText("");
 
 
@@ -68,5 +68,11 @@ void MainWindow::ClientRecvData(){
     QString showQstr = recvMsg; 
     //ui->m_recvTextEdit_2->moveCursor(QTextCursor::NextRow,QTextCursor::KeepAnchor);
     ui->m_recvTextEdit_2->insertHtml(QString("<div style=\"white-space:pre;\"><font color=\"black\">%1</font></div><br>").arg(showQstr));
+    //ui->m_recvTextEdit_2->insertHtml(QString("<div style=\"white-space:pre;\">%1</div><br>").arg(showQstr));
     //ui->m_recvTextEdit_2->append(showQstr);
+}
+
+void MainWindow::on_m_recvTextEdit_2_textChanged()
+{
+    ui->m_recvTextEdit_2->moveCursor(QTextCursor::End);
 }

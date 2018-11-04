@@ -23,6 +23,8 @@ private slots:
     void on_pushButton_2_clicked();
     void ClientRecvData();
 
+    void on_m_recvTextEdit_2_textChanged();
+
 private:
     //Ui::SocketTCPClient *ui;
     QTcpSocket *mp_clientSocket;
